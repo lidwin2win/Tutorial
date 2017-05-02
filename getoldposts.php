@@ -23,7 +23,8 @@
 
 	while( $row = mysqli_fetch_array($result) ){
 
-		echo "<textarea rows='2' cols='50' readonly>".$row['Content']."</textarea><br><br>";
+		echo "<textarea id='data' rows='2' cols='50' readonly>".$row['Content']."</textarea><br><br>";
+
 
 	}
 	

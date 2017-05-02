@@ -2,18 +2,111 @@
 
 	include('session.php');
 
+
+	if( isset ( $_SESSION['login_user']) ){
+
 ?>
 
 <html>
 
+
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	<style>
+
+		body{
+
+			font-family: 'Roboto', sans-serif;
+
+		}	
+
+
+		#data{
+
+			font-family: 'Roboto', sans-serif;
+
+			padding:100 500 100 500;
+
+			margin:40 190 40 190;
+
+			border-style:groove;	
+
+			border-color:skyblue;
+
+			border-width:7px;
+
+		}
+
+
+		 #submit{
+
+			font-family: 'Roboto', sans-serif;
+
+			    background-color: #4CAF50;
+			    border: none;
+			    color: white;
+			    
+			    margin:10 700 50 700;
+
+			    padding:12px 20px;
+
+			    text-decoration: none;
+			   
+			    cursor: pointer;
+
+
+			border-radius:20px;
+
+		}
+
+		ul {
+
+		    position:fixed;
+		    width:99%;
+		    list-style-type: none;
+		    margin: 0;
+		    padding: 0;
+		    overflow: hidden;
+		    background-color: #333;
+		    border-style:groove;
+		    border-color:#333;
+
+		}
+
+		li {
+		    float: left;
+		}
+
+		li a {
+		    display: block;
+		    color:#4CAF50 ;
+		    text-align: center;
+		    padding: 14px 16px;
+		    text-decoration: none;
+		    background-color:#e6fff7;	
+		}
+
+		
+
+
+
+	</style>
+
+
 <body>
 
-	<b id="welcome"> Welcome : <i> <?php echo $login_session;  ?></i> </b>
+	<ul>
 
-	<b id="logout"><a href="logout.php"> Logout </a></b>
+		<!--<li><b id="welcome"> Welcome : <i> <?php echo $login_session;  ?></i> </b></li>-->
+		<li></li>
 
+		<li  style="float:right"><b id="logout"><a href="logout.php"> Logout </a></b></li>
+
+	</ul>
 
 <?php
+
+
+
 
 	$un = "root";
 	$pwd="";
@@ -39,7 +132,9 @@
 
 	while( $row = mysqli_fetch_array($result) ){
 
-		echo "<textarea rows='2' cols='50' readonly>".$row['Content']."</textarea><br><br>";
+
+		echo "<textarea id ='data' rows='2' cols='50' readonly>".$row['Content']."</textarea><br><br>";
+
 
 	}
 	
@@ -56,7 +151,9 @@
 	
 	<br><br>
 
-	<button type="button" onClick="myFunction()">SEE NEXT 5 POSTS</button	>	
+
+	<button type="button" id ="submit" onClick="myFunction()">SEE NEXT 5 POSTS</button	>	
+
 	
 
 
@@ -122,3 +219,17 @@
 </body>
 
 </html>
+
+<?php } 
+
+
+	else{
+
+		header("location:login_home.php");
+
+		echo "<p>Please Login to Enter</p>";
+
+	}
+
+?>
+
