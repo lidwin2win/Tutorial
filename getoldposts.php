@@ -25,6 +25,7 @@
 
 		echo "<textarea id='data' rows='2' cols='50' readonly>".$row['Content']."</textarea><br><br>";
 
+
 	}
 	
 	mysqli_close($con);

@@ -15,6 +15,7 @@
 		}
 
 		else{
+
 			$flag = 0;
 
 			$un = $_POST['uname'];
@@ -94,6 +95,7 @@
 					$rows =  mysqli_num_rows($query);
 
 			
+
 
 
 					if( $rows==1 ){

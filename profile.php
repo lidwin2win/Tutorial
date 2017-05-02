@@ -9,6 +9,7 @@
 
 <html>
 
+
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 	<style>
 
@@ -106,6 +107,7 @@
 
 
 
+
 	$un = "root";
 	$pwd="";
 	$db="Blog";
@@ -130,7 +132,9 @@
 
 	while( $row = mysqli_fetch_array($result) ){
 
+
 		echo "<textarea id ='data' rows='2' cols='50' readonly>".$row['Content']."</textarea><br><br>";
+
 
 	}
 	
@@ -147,7 +151,9 @@
 	
 	<br><br>
 
+
 	<button type="button" id ="submit" onClick="myFunction()">SEE NEXT 5 POSTS</button	>	
+
 	
 
 
@@ -213,6 +219,7 @@
 </body>
 
 </html>
+
 <?php } 
 
 
@@ -225,3 +232,4 @@
 	}
 
 ?>
+
