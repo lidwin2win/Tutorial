@@ -1,6 +1,5 @@
 <?php
 
-
 	session_start();
 
 	if( isset( $_SESSION['login_user'] ) ){
@@ -10,15 +9,9 @@
 	
 
 
-
 	$conn = mysqli_connect('localhost','root','');
 
 	$db = mysqli_select_db($conn,"Blog");
-
-
-	session_start();
-
-	$user_check =  $_SESSION['login_user'];
 
 
 	$query = "Select un from login where un = '$user_check'";
@@ -30,6 +23,7 @@
 	$login_session =  $row['un'];
 
 
+	
 /*	if( !isset ($login_session) ){
 
 		mysqli_close($conn);
@@ -40,7 +34,5 @@
 
 */
 
-
 	}
-
 ?>

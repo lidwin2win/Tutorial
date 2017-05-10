@@ -9,7 +9,6 @@
 
 <html>
 
-
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 	<style>
 
@@ -18,6 +17,53 @@
 			font-family: 'Roboto', sans-serif;
 
 		}	
+
+		#button{
+
+			font-family: 'Roboto', sans-serif;
+
+			text-align:center;			
+
+		}
+
+		#but{
+
+			font-family: 'Roboto', sans-serif;
+			border-style:groove;	
+
+			border-color:skyblue;
+
+			border-width:4.5px;
+
+
+		    color:#4CAF50 ;
+
+		    text-decoration: none;
+		    background-color:#e6fff7;
+			    cursor: pointer;
+		
+
+		}
+
+
+		#but2{
+
+			font-family: 'Roboto', sans-serif;
+			border-style:groove;	
+
+			border-color:skyblue;
+
+			border-width:4.5px;
+
+
+		    color:#4CAF50 ;
+
+		    text-decoration: none;
+		    background-color:#e6fff7;
+			    cursor: pointer;
+		
+
+		}
 
 
 		#data{
@@ -85,7 +131,6 @@
 		    background-color:#e6fff7;	
 		}
 
-		
 
 
 
@@ -104,7 +149,6 @@
 	</ul>
 
 <?php
-
 
 
 
@@ -130,13 +174,29 @@
 
 	mysqli_query($con,$q);
 
+	$_SESSION['POST_NO'] = 1;
+
+
+
+
 	while( $row = mysqli_fetch_array($result) ){
 
+	//echo "<form name='submit_data' method='post' action='updateposts.php' >";
 
-		echo "<textarea id ='data' rows='2' cols='50' readonly>".$row['Content']."</textarea><br><br>";
+		echo "<textarea id ='data' class='$_SESSION[POST_NO]' rows='2' cols='50' name='$_SESSION[POST_NO]' readonly>".$row['Content']."</textarea><br><div id='button'> <button id='but2' class='$_SESSION[POST_NO]' onClick='submit(this);' disabled >submit</button> <button id='but' class='$_SESSION[POST_NO]' onClick='makeeditable(this);' >edit</button></div><br>";
 
+
+
+
+		$_SESSION['POST_NO'] = $_SESSION['POST_NO'] + 1;
+
+
+	//echo "</form>";
 
 	}
+
+
+
 	
 	mysqli_close($con);
 
@@ -151,9 +211,7 @@
 	
 	<br><br>
 
-
 	<button type="button" id ="submit" onClick="myFunction()">SEE NEXT 5 POSTS</button	>	
-
 	
 
 
@@ -212,6 +270,80 @@
 
 		}
 
+
+		function makeeditable( obj ){
+
+			var class_of_button = obj.className ;
+
+
+			document.getElementsByClassName(class_of_button)[0].readOnly=false;
+
+			document.getElementsByClassName(class_of_button)[1].disabled=false;
+
+			obj.disabled = true;
+
+		}
+
+		
+		function submit( obj  ){
+
+					var class_of_button = obj.className ;
+	
+					var data = document.getElementsByClassName(class_of_button)[0].value;
+
+					var row = class_of_button;
+
+
+
+			if(window.XMLHttpRequest){
+
+				xmlhttp = new XMLHttpRequest(); // for modern browsers!
+		
+			}
+
+			else{
+
+				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			
+			}
+
+
+			xmlhttp.onreadystatechange = function(){
+
+	
+				if(this.readyState ==4 &&  this.status == 200){
+
+
+
+					var class_of_button = obj.className ;
+
+
+					document.getElementsByClassName(class_of_button)[0].readOnly=true;
+
+					document.getElementsByClassName(class_of_button)[2].disabled=false;
+
+					obj.disabled = true;
+
+
+					var result = this.responseText;
+
+					//alert(result);
+				}			
+
+
+			};
+
+
+
+			xmlhttp.open("GET","updateposts.php?data="+data+"&row="+row, true);
+
+			xmlhttp.send();
+
+
+
+	
+		}
+
 	</script>
 
 
@@ -219,7 +351,6 @@
 </body>
 
 </html>
-
 <?php } 
 
 
@@ -232,4 +363,3 @@
 	}
 
 ?>
-

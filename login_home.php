@@ -2,7 +2,7 @@
 
 	include('login.php');
 
-
+	//print_r( array_values($checkun));
 	
 	if ( isset ( $_SESSION['login_user'] ) ){
 
@@ -16,7 +16,6 @@
 
 
 ?>
-
 
 
 
