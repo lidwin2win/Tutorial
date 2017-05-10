@@ -2,6 +2,10 @@
 <body>
 
 <?php
+	include('session.php');
+
+
+	if( isset ( $_SESSION['login_user']) ){
 
 	$un = "root";
 	$pwd="";
@@ -21,15 +25,23 @@
 
 	mysqli_query($con,$q);
 
+
 	while( $row = mysqli_fetch_array($result) ){
 
-		echo "<textarea id='data' rows='2' cols='50' readonly>".$row['Content']."</textarea><br><br>";
+	//echo "<form name='submit_data' method='post' action='updateposts.php' >";
 
+			echo "<textarea id ='data' class='$_SESSION[POST_NO]' rows='2' cols='50' name='$_SESSION[POST_NO]' readonly>".$row['Content']."</textarea><br><div id='button'> <button id='but2' class='$_SESSION[POST_NO]' onClick='submit(this);' disabled >submit</button> <button id='but' class='$_SESSION[POST_NO]' onClick='makeeditable(this);' >edit</button></div><br>";
+
+
+		$_SESSION['POST_NO'] = $_SESSION['POST_NO'] + 1;
+
+	//echo "</form>";
 
 	}
 	
 	mysqli_close($con);
 
+}
 ?>
 
 
